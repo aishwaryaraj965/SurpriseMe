@@ -1,6 +1,6 @@
 import pickledb
 
-db = pickledb.load('realmp7data.db', False)
+db = pickledb.load('/var/www/SurpriseMe/realmp7data.db', False)
 try:
     db.lgetall("users")
 except KeyError as e:
