@@ -1,6 +1,10 @@
 import pickledb
 
 db = pickledb.load('realmp7data.db', False)
+try:
+    db.lgetall("users")
+except KeyError as e:
+    db.lcreate("users")
 
 # def passData(name, preferences, time, id):
 #     namepreftime = [name, preferences, time]
