@@ -8,64 +8,64 @@ ALL_TOPICS = ("sports", "news", "science", "funfacts", "entertainment", "stories
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+	return "Hello World!"
 
 if __name__ == "__main__":
 	app.run()
 
 @app.route("/surpriseme/", methods=["GET"])
 def verify():
-    if config.VERIFY_TOKEN == request.args.get('hub.verify_token'):
-        return request.args.get('hub.challenge')
-    return ''
+	if config.VERIFY_TOKEN == request.args.get('hub.verify_token'):
+		return request.args.get('hub.challenge')
+	return ''
 
 @app.route("/surpriseme/", methods=["POST"])
 def handle_message():
-    request_json = request.get_json()
-    print(request_json)
-    try:
-        senderId = request_json['entry'][0]['messaging'][0]['sender']['id']
-        if "message" in ['entry'][0]['messaging'][0]:
+	request_json = request.get_json()
+	print(request_json)
+	try:
+		senderId = request_json['entry'][0]['messaging'][0]['sender']['id']
+		if "message" in ['entry'][0]['messaging'][0]:
 
-            message = request_json['entry'][0]['messaging'][0]["message"]["text"]
-            if message[0:10] == "interests ":
-                topics = message[10:].split(", ")
-                for topic in topics:
-                    if topic not in ALL_TOPICS:
-                        reply_text(senderId, "Please set your interests like this:\ninterests sports, news, science\n\nPossible interests are:\nsports, news, science, funfacts, entertainment, stories, lifestyle, health")
-                        return ""
-                datastore.addUser(senderId,topics)
-                reply_time_choice(senderId)
-            else:
-                reply_text(senderId, "Please set your interests like this:\ninterests sports, news, science\n\nPossible interests are:\nsports, news, science, funfacts, entertainment, stories, lifestyle, health")
-        elif "postback" in request_json['entry'][0]['messaging'][0]:
-            time = int(request_json['entry'][0]['messaging'][0]["postback"]["payload"])
-            datastore.setTime(senderId,time)
-            reply_text(senderId, "Your time preferences have been set.")
+			message = request_json['entry'][0]['messaging'][0]["message"]["text"]
+			if message[0:10] == "interests ":
+				topics = message[10:].split(", ")
+				for topic in topics:
+					if topic not in ALL_TOPICS:
+						reply_text(senderId, "Please set your interests like this:\ninterests sports, news, science\n\nPossible interests are:\nsports, news, science, funfacts, entertainment, stories, lifestyle, health")
+						return ""
+				datastore.addUser(senderId,topics)
+				reply_time_choice(senderId)
+			else:
+				reply_text(senderId, "Please set your interests like this:\ninterests sports, news, science\n\nPossible interests are:\nsports, news, science, funfacts, entertainment, stories, lifestyle, health")
+		elif "postback" in request_json['entry'][0]['messaging'][0]:
+			time = int(request_json['entry'][0]['messaging'][0]["postback"]["payload"])
+			datastore.setTime(senderId,time)
+			reply_text(senderId, "Your time preferences have been set.")
 
-    except Exception as e:
-        print e.message
+	except Exception as e:
+		print e.message
 
-    return ""
+	return ""
 
 
 
 #send a response back
 # def format_response(senderId):
-#     try:
-#         stuffToRespond = # enter reddit stuff here
-#         if
-#         response(senderId,"here is your surprise article" , reddit article)
-#         else
-#             print("sorry some great tragedy has befallen this bot ")
-#             response_error(senderId)
-#         return "finished"
-#     except:
-#         response_error(senderId)
-#         print "Some great tragedy has befallen this bot"
+#	 try:
+#		 stuffToRespond = # enter reddit stuff here
+#		 if
+#		 response(senderId,"here is your surprise article" , reddit article)
+#		 else
+#			 print("sorry some great tragedy has befallen this bot ")
+#			 response_error(senderId)
+#		 return "finished"
+#	 except:
+#		 response_error(senderId)
+#		 print "Some great tragedy has befallen this bot"
 #in case of error
 def reply_error(senderId):
-    reply_text(senderId, "some unexpceted error has occured please try again")
+	reply_text(senderId, "some unexpceted error has occured please try again")
 
 #reply construction
 def reply_text(senderId, message):
@@ -113,4 +113,4 @@ def reply_time_choice(senderId):
 			}
 		}
 	}
-    requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=" + config.PAGE_ACCESS_TOKEN, json = button_data)
+	requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=" + config.PAGE_ACCESS_TOKEN, json = button_data)
