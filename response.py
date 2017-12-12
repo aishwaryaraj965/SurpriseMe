@@ -15,7 +15,7 @@ def response(senderId, articleUrl):
             "id": senderId
         },
         "message": {
-            "text": "Here is your surprise article: "+ article_url
+            "text": "Here is your surprise article: "+ articleUrl
         }
 
     }
