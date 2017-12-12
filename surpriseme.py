@@ -44,7 +44,7 @@ def handle_message():
 		elif "postback" in request_json['entry'][0]['messaging'][0]:
 			time = int(request_json['entry'][0]['messaging'][0]["postback"]["payload"])
 			datastore.setTime(senderId,time)
-			reply_text(senderId, "Your time preferences have been se.")
+			reply_text(senderId, "Your time preferences have been set.")
 
 	except Exception as e:
 		print traceback.format_exc()
