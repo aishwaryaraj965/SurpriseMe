@@ -3,6 +3,7 @@ from flask import request
 import config
 import datastore
 import traceback
+import requests
 
 app = Flask(__name__)
 
