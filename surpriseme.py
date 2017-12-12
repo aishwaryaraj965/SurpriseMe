@@ -20,7 +20,6 @@ def verify():
     return ''
 
 @app.route("/surpriseme/", methods=["POST"])
-#process message
 def handle_message():
     request_json = request.get_json()
     print(request_json)
@@ -36,8 +35,7 @@ def handle_message():
                         reply_text(senderId, "Please set your interests like this:\ninterests sports, news, science\n\nPossible interests are:\nsports, news, science, funfacts, entertainment, stories, lifestyle, health")
                         return ""
                 datastore.addUser(senderId,topics)
-
-
+                reply_time_choice(senderId)
             else:
                 reply_text(senderId, "Please set your interests like this:\ninterests sports, news, science\n\nPossible interests are:\nsports, news, science, funfacts, entertainment, stories, lifestyle, health")
         elif "postback" in request_json['entry'][0]['messaging'][0]:
@@ -83,7 +81,7 @@ def reply_text(senderId, message):
 	requests.post("https://graph.facebook.com/v2.6/me/messages?access_token=" + config.PAGE_ACCESS_TOKEN, json=text_data)
 
 
-def reply_time_choice(senderId, message):
+def reply_time_choice(senderId):
 	button_data = {
 		"recipient": {
 			"id": senderId
