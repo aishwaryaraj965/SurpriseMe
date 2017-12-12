@@ -2,6 +2,8 @@ from flask import Flask
 from flask import request
 import config
 import datastore
+import traceback
+
 app = Flask(__name__)
 
 ALL_TOPICS = ("sports", "news", "science", "funfacts", "entertainment", "stories", "lifestyle", "health")
@@ -44,7 +46,7 @@ def handle_message():
 			reply_text(senderId, "Your time preferences have been set.")
 
 	except Exception as e:
-		print e.message
+		print traceback.format_exc()
 
 	return ""
 
