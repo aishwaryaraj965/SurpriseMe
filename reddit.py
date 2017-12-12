@@ -30,3 +30,4 @@ def pick_sub(topics):
 
 def returnTop(subreddit):
     return reddit.subreddit(subreddit).top('day').next().url
+#Reetahan also worked on this file and helped set up which subreddits the interests would pull from 
