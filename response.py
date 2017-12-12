@@ -11,8 +11,7 @@ users = datastore.getUsersByTime(time)
 
 for user in users:
     try:
-        sub = reddit.pick_sub(user["topics"])
-        url = reddit.returnTop(sub)
+        url = reddit.pick_sub(user["topics"]))
         response(user["id"], url)
     except Exception as e:
         print e.message
