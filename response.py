@@ -3,10 +3,15 @@ import datastore
 import reddit
 import config
 import requests
+import sys
+
+override = False
+if len(sys.argv) > 1 and sys.argv[1] == "override":
+    override = True
 
 time = datetime.datetime.now().hour
 
-users = datastore.getUsersByTime(time)
+users = datastore.getUsersByTime(time, override)
 
 #reply construction
 def response(senderId, articleUrl):
