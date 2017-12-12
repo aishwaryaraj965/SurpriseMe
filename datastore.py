@@ -39,6 +39,6 @@ def getUsersByTime(time):
     outputUsers = []
     for user in users:
         userData = returnData(user)
-        if userData["time"] == time :
+        if userData["time"] == time or True:
             outputUsers.append(userData)
     return outputUsers
