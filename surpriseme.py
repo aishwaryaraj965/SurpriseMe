@@ -35,12 +35,12 @@ def handle_message():
 				topics = message[10:].split(", ")
 				for topic in topics:
 					if topic not in ALL_TOPICS:
-						reply_text(senderId, "Please set your interests like this:\ninterests sports, news, science\n\nPossible interests are:\nsports, news, science, funfacts, entertainment, stories, lifestyle, health")
+						reply_text(senderId, "Please set your interests in this format:\ninterests sports, news, science\n\nPossible interests are:\nsports, news, science, funfacts, entertainment, stories, lifestyle, health")
 						return ""
 				datastore.addUser(senderId,topics)
 				reply_time_choice(senderId)
 			else:
-				reply_text(senderId, "Please set your interests like this:\ninterests sports, news, science\n\nPossible interests are:\nsports, news, science, funfacts, entertainment, stories, lifestyle, health")
+				reply_text(senderId, "Please set your interests in this format:\ninterests sports, news, science\n\nPossible interests are:\nsports, news, science, funfacts, entertainment, stories, lifestyle, health")
 		elif "postback" in request_json['entry'][0]['messaging'][0]:
 			time = int(request_json['entry'][0]['messaging'][0]["postback"]["payload"])
 			datastore.setTime(senderId,time)
