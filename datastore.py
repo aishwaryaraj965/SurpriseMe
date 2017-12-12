@@ -6,7 +6,7 @@ try:
 except KeyError as e:
     db.dcreate("users")
     db.dump()
-
+#Reetahan contributed to this file and helped set up how the user would store data.
 # def passData(name, preferences, time, id):
 #     namepreftime = [name, preferences, time]
 #     db.set(id,namepreftime)
