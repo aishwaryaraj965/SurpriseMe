@@ -73,7 +73,7 @@ def reply_error(senderId):
 def reply_text(senderId, message):
 	text_data = {
 		"recipient": {
-			"id": user_id
+			"id": senderId
 		},
 		"message": {
 			"text": message
