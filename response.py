@@ -11,7 +11,7 @@ if len(sys.argv) > 1 and sys.argv[1] == "override":
 
 time = datetime.datetime.now().hour
 
-users = datastore.getUsersByTime(time, True)
+users = datastore.getUsersByTime(time, override)
 
 #reply construction
 def response(senderId, articleUrl):
