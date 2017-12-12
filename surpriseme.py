@@ -25,8 +25,8 @@ def handle_message():
     request_json = request.get_json()
     print(request_json)
     try:
-        senderId = request_json['entry'][0['messaging'][0]['sender']['id']
-        if request_json['entry'][0]['messaging'][0].has_key('message'):
+        senderId = request_json['entry'][0]['messaging'][0]['sender']['id']
+        if "message" in ['entry'][0]['messaging'][0]:
 
             message = request_json['entry'][0]['messaging'][0]["message"]["text"]
             if message[0:10] == "interests ":
