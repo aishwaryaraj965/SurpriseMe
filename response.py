@@ -17,7 +17,9 @@ for user in users:
         print e.message
 
 #reply construction
-def response(senderId, article_url):
+def response(senderId, articleUrl):
+    print senderId
+    print articleUrl
     articleData = {
         "recipient": {
             "id": senderId
