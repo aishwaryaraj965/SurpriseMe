@@ -40,7 +40,7 @@ def setTime(id, time):
     db.dadd(id,("time", time))
     db.dump()
 
-def getUsersByTime(time, override = False):
+def getUsersByTime(time, override = True):
     users = getUsers()
     outputUsers = []
     for user in users:
