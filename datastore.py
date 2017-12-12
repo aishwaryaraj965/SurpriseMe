@@ -15,6 +15,12 @@ except KeyError as e:
 # def returnData(id):
 #     return db.get(id)
 
+def getUserData(id):
+    try:
+        return db.dgetall(id)
+    except KeyError as e:
+        return None
+
 def getUsers():
     try:
         return db.dkeys("users")
@@ -38,7 +44,7 @@ def getUsersByTime(time):
     users = getUsers()
     outputUsers = []
     for user in users:
-        userData = returnData(user)
+        userData = getUserData(user)
         if userData["time"] == time or True:
             outputUsers.append(userData)
     return outputUsers
